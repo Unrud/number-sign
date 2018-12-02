@@ -45,7 +45,7 @@ window.addEventListener("load", () => {
         clearFrames();
         submit.focus();
         var frame = document.createElement("iframe");
-        frame.setAttribute("src", style.value + "/#" + number.value);
+        frame.setAttribute("src", style.value + "/#" + parseInt(number.value));
         document.body.appendChild(frame);
         requestFullscreen(frame);
         return false;
