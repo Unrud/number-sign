@@ -37,11 +37,13 @@ function clearFrames() {
 }
 
 window.addEventListener("load", () => {
-    var form = document.getElementById("form");
-    var number = document.getElementById("number");
-    var style = document.getElementById("style");
+    var form = document.querySelector("form");
+    var number = form.querySelector("#number");
+    var style = form.querySelector("#style");
+    var submit = document.querySelector("input[type=submit]");
     form.onsubmit = () => {
         clearFrames();
+        submit.focus();
         var frame = document.createElement("iframe");
         frame.setAttribute("src", style.value + "/#" + number.value);
         document.body.appendChild(frame);
