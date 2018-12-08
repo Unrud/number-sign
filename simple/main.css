@@ -21,6 +21,7 @@ body {
     align-items: center;
     overflow: hidden;
     font-size: 100vh;
+    cursor: none;
 }
 
 @media (max-aspect-ratio: 3/2) {
