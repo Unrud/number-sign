@@ -37,22 +37,22 @@ function clearFrames() {
 }
 
 window.addEventListener("load", () => {
-    var form = document.querySelector("form");
-    var number = form.querySelector("#number");
-    var style = form.querySelector("#style");
-    var submit = document.querySelector("input[type=submit]");
-    form.onsubmit = () => {
+    let form = document.querySelector("form");
+    let number = form.querySelector("#number");
+    let style = form.querySelector("#style");
+    let submit = document.querySelector("input[type=submit]");
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
         clearFrames();
         submit.focus();
-        var frame = document.createElement("iframe");
+        let frame = document.createElement("iframe");
         frame.setAttribute("src", style.value + "/#" + parseInt(number.value));
         document.body.appendChild(frame);
         requestFullscreen(frame);
-        return false;
-    };
+    });
     addFullscreenchangeEventListener(() => {
         if (!fullscreenElement()) {
             clearFrames();
         }
     });
-}, false);
+});
