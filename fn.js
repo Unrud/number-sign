@@ -1,3 +1,7 @@
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js");
+}
+
 function requestFullscreen(e) {
     if (e.requestFullscreen) {
         e.requestFullscreen();
@@ -77,7 +81,7 @@ window.addEventListener("load", () => {
         clearFrames();
         submit.focus();
         let frame = document.createElement("iframe");
-        frame.setAttribute("src", style.value + "/#" + parseInt(number.value));
+        frame.setAttribute("src", style.value + "/index.html#" + parseInt(number.value));
         document.body.appendChild(frame);
         requestFullscreen(frame);
         noSleep.enable();

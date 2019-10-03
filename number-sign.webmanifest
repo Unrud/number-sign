@@ -1,0 +1,17 @@
+{
+    "name": "Number Sign",
+    "short_name": "Number Sign",
+    "icons": [
+        {
+            "src": "icon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "index.html",
+    "display": "standalone",
+    "orientation": "landscape",
+    "serviceworker": {"src": "sw.js" },
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff"
+}
