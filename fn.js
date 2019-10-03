@@ -2,15 +2,15 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js");
 }
 
-function requestFullscreen(e) {
+function requestFullscreen(e, options) {
     if (e.requestFullscreen) {
-        e.requestFullscreen();
+        e.requestFullscreen(options);
     } else if (e.webkitRequestFullscreen) {
-        e.webkitRequestFullscreen();
+        e.webkitRequestFullscreen(options);
     } else if (e.mozRequestFullScreen) {
-        e.mozRequestFullScreen();
+        e.mozRequestFullScreen(options);
     } else if (e.msRequestFullscreen) {
-        e.msRequestFullscreen();
+        e.msRequestFullscreen(options);
     }
 }
 
@@ -83,7 +83,7 @@ window.addEventListener("load", () => {
         let frame = document.createElement("iframe");
         frame.setAttribute("src", style.value + "/index.html#" + parseInt(number.value));
         document.body.appendChild(frame);
-        requestFullscreen(frame);
+        requestFullscreen(frame, {navigationUI: "hide"});
         noSleep.enable();
     });
     addFullscreenchangeEventListener(() => {
