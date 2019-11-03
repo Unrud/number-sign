@@ -14,6 +14,18 @@ function requestFullscreen(e, options) {
     }
 }
 
+function exitFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+    } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+    }
+}
+
 function fullscreenElement() {
     return (document.fullscreenElement ||
         document.webkitFullscreenElement ||
@@ -80,16 +92,28 @@ window.addEventListener("load", () => {
         event.preventDefault();
         clearFrames();
         submit.focus();
+        history.pushState("running", "");
         let frame = document.createElement("iframe");
         frame.setAttribute("src", style.value + "/index.html#" + parseInt(number.value));
         document.body.appendChild(frame);
+        form.classList.add("hidden");
         requestFullscreen(frame, {navigationUI: "hide"});
         noSleep.enable();
     });
     addFullscreenchangeEventListener(() => {
-        if (!fullscreenElement()) {
-            clearFrames();
-            noSleep.disable();
+        if (!fullscreenElement() && history.state != null) {
+            history.back();
         }
     });
+    window.onpopstate = () => {
+        if (history.state == null) {
+            exitFullscreen();
+            clearFrames();
+            form.classList.remove("hidden");
+            noSleep.disable();
+        } else {
+            history.back();
+        }
+    };
+    window.onpopstate();
 });
