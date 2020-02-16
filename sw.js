@@ -1,5 +1,5 @@
 // Files to cache
-var cacheName = "numbersign1";
+var cacheName = "numbersign2";
 var contentToCache = [
   ".",
   "fn.js",
